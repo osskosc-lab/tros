@@ -1,7 +1,7 @@
 """TROS / Universe OS experimental kernel."""
 
-from .core import (
-    State,
+from .model import State
+from .modules import (
     WorldModelCore,
     TimelineEngine,
     CausalityEngine,
@@ -9,9 +9,8 @@ from .core import (
     EchoCore,
     EthicsLayer,
     SelfReflectionCore,
-    TROSAgent,
-    MPCBaseline,
 )
+from .agents import TROSAgent, MPCBaseline
 
 __all__ = [
     "State",
