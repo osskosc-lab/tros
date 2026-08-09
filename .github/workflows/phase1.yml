@@ -1,0 +1,26 @@
+name: TROS Phase 1 Modular Kernel
+
+on:
+  push:
+    branches: [main, phase1-modular-kernel]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Smoke tests
+        run: python -m unittest discover -s tests -v
+      - name: Run frozen Phase 1 experiment
+        run: python -m experiments.phase1
+      - name: Upload Phase 1 artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: tros-phase1-results
+          path: artifacts/
